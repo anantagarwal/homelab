@@ -11,7 +11,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.homepage.rule=Host(`pi.local`) || Host(`homepage.anantagarwal.me`)"
       - "traefik.http.routers.homepage.entrypoints=web"
-      - "traefik.http.routers.homepage.entrypoints=websecure"
 
 networks:
   default:
