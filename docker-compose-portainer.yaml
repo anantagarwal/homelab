@@ -1,0 +1,20 @@
+name: homelab-portainer
+
+networks:
+  default:
+    name: homelab-network
+    external: true
+
+services:
+  portainer:
+    image: portainer/portainer-ce:2.32.0-alpine
+    restart: always
+    ports:
+      - "8000:8000"
+      - "9443:9443"
+    volumes:
+      - portainer-data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  portainer-data:
