@@ -1,0 +1,13 @@
+services:
+  whoami:
+    image: "traefik/whoami"
+    container_name: "whoami"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`pi.local`) || Host(`whoami.anantagarwal.me`)"
+      - "traefik.http.routers.whoami.entrypoints=web"
+
+networks:
+  default:
+    name: homelab-network
+    external: true
