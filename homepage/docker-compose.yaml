@@ -8,7 +8,7 @@ services:
       - ./config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      HOMEPAGE_ALLOWED_HOSTS: homepage.anantagarwal.me
+      HOMEPAGE_ALLOWED_HOSTS: "homepage.anantagarwal.me,192.168.1.55:3000"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`pi.local`) || Host(`homepage.anantagarwal.me`)"
