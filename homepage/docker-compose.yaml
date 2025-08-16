@@ -11,8 +11,8 @@ services:
       HOMEPAGE_ALLOWED_HOSTS: "homepage.anantagarwal.me,192.168.1.55:3000"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`pi.local`) || Host(`homepage.anantagarwal.me`)"
-      - "traefik.http.routers.whoami.entrypoints=web"
+      - "traefik.http.routers.homepage.rule=Host(`pi.local`) || Host(`homepage.anantagarwal.me`)"
+      - "traefik.http.routers.homepage.entrypoints=web"
 
 networks:
   default:
