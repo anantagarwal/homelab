@@ -1,0 +1,50 @@
+services:
+  
+  cloudflare_tunnel:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
+    restart: always
+
+  whoami:
+    image: "traefik/whoami"
+    container_name: "whoami"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.anantagarwal.me`)"
+      - "traefik.http.routers.whoami.entrypoints=web"
+  
+  homepage:
+    image: ghcr.io/gethomepage/homepage:v1.4.5
+    container_name: homepage
+    volumes:
+      - ./homepage/config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: "homepage.anantagarwal.me"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.homepage.rule=Host(`pi.local`) || Host(`homepage.anantagarwal.me`)"
+      - "traefik.http.routers.homepage.entrypoints=web"
+
+  traefik:
+    image: "traefik:v3.5"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.websecure.address=:443"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+  
+
+networks:
+  default:
+    name: homelab-network
+    external: true
