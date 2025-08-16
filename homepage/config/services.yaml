@@ -1,0 +1,15 @@
+---
+- Infra:
+    - Traefik:
+        href: http://192.168.1.55:8080
+        description: Proxy Dashboard
+        icon: traefik.svg
+        widget:
+            type: traefik
+            url: http://192.168.1.55:8080
+
+- Public:
+    - WhoAmI:
+        href: https://whoami.anantagarwal.me
+        description: Who Am I
+        icon: home-assistant.svg
