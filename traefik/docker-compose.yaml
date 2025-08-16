@@ -19,5 +19,5 @@ services:
     container_name: "simple-service"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
+      - "traefik.http.routers.whoami.rule=Host(`pi.local`)"
       - "traefik.http.routers.whoami.entrypoints=web"
