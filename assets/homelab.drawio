@@ -1,0 +1,152 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6">
+  <diagram name="Page-1" id="g_UVqDcBMchZNELhRoKj">
+    <mxGraphModel dx="1426" dy="841" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="1700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-24" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="270" width="444" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-27" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="610" y="300" width="354" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-25" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://icons.diagrams.net/icon-cache1/Fruit-2455/Fruit_iconfree_Filled_Outline_raspberry-healthy-organic-food-fruit_icon-896.svg" vertex="1" parent="1">
+          <mxGeometry x="570" y="280" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-26" value="" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Docker.svg;" vertex="1" parent="1">
+          <mxGeometry x="914" y="486" width="36.59" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;startArrow=blockThin;startFill=1;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-29" target="pERkv3QoaEtKQf-kVdr6-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=block;startFill=1;dashed=1;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-29" target="pERkv3QoaEtKQf-kVdr6-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-29" target="pERkv3QoaEtKQf-kVdr6-44">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="665" y="600" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="665" y="510" />
+              <mxPoint x="901" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-43" value="acme" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=light-dark(#d5e8d4, #ededed);" vertex="1" connectable="0" parent="pERkv3QoaEtKQf-kVdr6-42">
+          <mxGeometry x="-0.1436" y="-3" relative="1" as="geometry">
+            <mxPoint x="1" y="-4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-29" value="" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;image=https://ddev.com/img/blog/2024/07/traefik.logo.png;" vertex="1" parent="1">
+          <mxGeometry x="640" y="335" width="50" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-32" value="Internal Apps&lt;div&gt;*.internal&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;fontFamily=Verdana;" vertex="1" parent="1">
+          <mxGeometry x="794" y="320" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-33" value="Public Apps" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;fontFamily=Verdana;" vertex="1" parent="1">
+          <mxGeometry x="794" y="370" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-36" value="Raspberry Pi" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Verdana;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="720" y="270" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=block;startFill=1;dashed=1;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-37" target="pERkv3QoaEtKQf-kVdr6-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-51" value="http://traefik" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=light-dark(#d5e8d4, #ededed);" vertex="1" connectable="0" parent="pERkv3QoaEtKQf-kVdr6-39">
+          <mxGeometry x="-0.291" y="-4" relative="1" as="geometry">
+            <mxPoint y="3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-37" value="" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cloudflare_Logo.svg/330px-Cloudflare_Logo.svg.png;" vertex="1" parent="1">
+          <mxGeometry x="804" y="430" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-38" value="Agent" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Verdana;" vertex="1" parent="1">
+          <mxGeometry x="824" y="456" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-41" target="pERkv3QoaEtKQf-kVdr6-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-50" value="TLS Cert&amp;nbsp;&lt;div&gt;*.internal.anantagarwal.me&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="pERkv3QoaEtKQf-kVdr6-49">
+          <mxGeometry x="-0.709" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-41" value="" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Let%27s_Encrypt.svg/330px-Let%27s_Encrypt.svg.png;" vertex="1" parent="1">
+          <mxGeometry x="577.5" y="625" width="99" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-44" target="pERkv3QoaEtKQf-kVdr6-41">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="740" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-48" value="DNS Challenge" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="pERkv3QoaEtKQf-kVdr6-47">
+          <mxGeometry x="-0.1972" y="-3" relative="1" as="geometry">
+            <mxPoint x="-1" y="3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-44" value="" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cloudflare_Logo.svg/330px-Cloudflare_Logo.svg.png;" vertex="1" parent="1">
+          <mxGeometry x="850.59" y="618" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=blockThin;startFill=1;dashed=1;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-52" target="pERkv3QoaEtKQf-kVdr6-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-59" value="https - local ip (192.168.1.55)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="pERkv3QoaEtKQf-kVdr6-58">
+          <mxGeometry x="-0.081" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-52" value="" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.chrome" vertex="1" parent="1">
+          <mxGeometry x="180" y="345" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-53" target="pERkv3QoaEtKQf-kVdr6-52">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-57" value="local-ip address" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="pERkv3QoaEtKQf-kVdr6-56">
+          <mxGeometry x="0.2755" y="1" relative="1" as="geometry">
+            <mxPoint y="-13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-53" target="pERkv3QoaEtKQf-kVdr6-60">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-64" value="tunnel proxy" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="pERkv3QoaEtKQf-kVdr6-63">
+          <mxGeometry x="0.4124" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-53" value="Cloudfare DNS" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/DNS.svg;" vertex="1" parent="1">
+          <mxGeometry x="60" y="456" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0.08;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-52" target="pERkv3QoaEtKQf-kVdr6-53">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-55" value="*.internal.anantagarwal.me" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="pERkv3QoaEtKQf-kVdr6-54">
+          <mxGeometry x="0.044" y="3" relative="1" as="geometry">
+            <mxPoint y="40" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-60" target="pERkv3QoaEtKQf-kVdr6-53">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-62" value="whoami.anantagarwal.me" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="pERkv3QoaEtKQf-kVdr6-61">
+          <mxGeometry x="-0.268" relative="1" as="geometry">
+            <mxPoint x="-9" y="-25" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classicThin;startFill=1;dashed=1;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-60" target="pERkv3QoaEtKQf-kVdr6-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-66" value="proxied via cloudfare&amp;nbsp;&lt;div&gt;http://traefik&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="pERkv3QoaEtKQf-kVdr6-65">
+          <mxGeometry x="-0.4581" y="2" relative="1" as="geometry">
+            <mxPoint x="-22" y="2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-60" value="" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.chrome" vertex="1" parent="1">
+          <mxGeometry x="180" y="585" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-68" value="" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cloudflare_Logo.svg/330px-Cloudflare_Logo.svg.png;" vertex="1" parent="1">
+          <mxGeometry x="360" y="560" width="80" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
