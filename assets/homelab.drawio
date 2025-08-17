@@ -132,6 +132,11 @@
             <mxPoint x="-9" y="-25" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="pERkv3QoaEtKQf-kVdr6-69" value="public apps" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="pERkv3QoaEtKQf-kVdr6-61">
+          <mxGeometry x="-0.299" relative="1" as="geometry">
+            <mxPoint x="14" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="pERkv3QoaEtKQf-kVdr6-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classicThin;startFill=1;dashed=1;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-60" target="pERkv3QoaEtKQf-kVdr6-38">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
