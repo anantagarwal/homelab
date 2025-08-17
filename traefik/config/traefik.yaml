@@ -11,11 +11,6 @@ api:
 entryPoints:
   web:
     address: ":80"
-    # http:
-    #   redirections:
-    #     entryPoint:
-    #       scheme: https
-    #       to: websecure
   websecure:
     address: ":443"
 serversTransport:
@@ -27,8 +22,7 @@ providers:
 certificatesResolvers:
   cloudflare:
     acme:
-      caServer: https://acme-v02.api.letsencrypt.org/directory # production (default)
-      #caServer: https://acme-staging-v02.api.letsencrypt.org/directory # staging (testing)
+      caServer: https://acme-v02.api.letsencrypt.org/directory
       storage: /var/traefik/certs/cloudflare-acme.json
       dnsChallenge:
         provider: cloudflare # change as required
