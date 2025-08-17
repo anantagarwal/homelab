@@ -35,6 +35,9 @@ services:
     container_name: "traefik"
     environment:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
+      - CF_API_EMAIL=${CF_API_EMAIL}
+    command:
+      - --certificatesresolvers.cloudflare.acme.email=${CF_API_EMAIL}
     ports:
       - "80:80"
       - "443:443"
