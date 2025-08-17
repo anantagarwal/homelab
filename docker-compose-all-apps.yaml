@@ -23,11 +23,12 @@ services:
       HOMEPAGE_ALLOWED_HOSTS: "homepage.anantagarwal.me"
     labels:
       - traefik.enable=true
-      - traefik.http.routers.homepage.rule=Host(`pi.local`) || Host(`homepage.local.anantagarwal.me`)
-      - traefik.http.routers.homepage.entrypoints=web
-      - traefik.http.routers.homepage.entrypoints=websecure
-      - traefik.http.routers.homepage.tls=true
-      - traefik.http.routers.homepage.tls.certresolver=cloudflare
+      - traefik.http.routers.homepage-http.rule=Host(`pi.local`) || Host(`homepage.internal.anantagarwal.me`)
+      - traefik.http.routers.homepage-http.entrypoints=web
+      - traefik.http.routers.homepage-https.tls=true
+      - traefik.http.routers.homepage-https.tls.certresolver=cloudflare
+      - traefik.http.routers.homepage-https.entrypoints=websecure
+      - traefik.http.routers.homepage-https.rule=Host(`homepage.internal.anantagarwal.me`)
 
   traefik:
     image: "traefik:v3.5.0"
