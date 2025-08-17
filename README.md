@@ -3,6 +3,8 @@ My Home Lab using Raspberry Pi 5
 
 ## Architecture
 
+![alt text](assets/homelab.png)
+
 ## Internet Exposed Apps
 - [Who Am I](https://whoami.anantagarwal.me)
 
