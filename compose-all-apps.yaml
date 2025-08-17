@@ -26,7 +26,7 @@ services:
       - traefik.enable=true
       - traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https
       - traefik.http.routers.homepage-http.middlewares=traefik-https-redirect
-      - traefik.http.routers.homepage-http.rule=Host(`pi.local`) || Host(`homepage.internal.anantagarwal.me`)
+      - traefik.http.routers.homepage-http.rule=Host(`homepage.internal.anantagarwal.me`)
       - traefik.http.routers.homepage-http.entrypoints=web      
       - traefik.http.routers.homepage-https.tls=true
       - traefik.http.routers.homepage-https.tls.certresolver=cloudflare
@@ -53,12 +53,13 @@ services:
       - traefik.enable=true
       - traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https
       - traefik.http.routers.traefik-http.middlewares=traefik-https-redirect
-      - traefik.http.routers.traefik-http.rule=Host(`pi.local`) || Host(`traefik.internal.anantagarwal.me`)
+      - traefik.http.routers.traefik-http.rule=Host(`traefik.internal.anantagarwal.me`)
       - traefik.http.routers.traefik-http.entrypoints=web
       - traefik.http.routers.traefik-https.tls=true
       - traefik.http.routers.traefik-https.tls.certresolver=cloudflare
       - traefik.http.routers.traefik-https.entrypoints=websecure
       - traefik.http.routers.traefik-https.rule=Host(`traefik.internal.anantagarwal.me`)
+      - traefik.http.routers.traefik-https.service=api@internal
       
 
 networks:
