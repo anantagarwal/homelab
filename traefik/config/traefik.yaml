@@ -11,11 +11,11 @@ api:
 entryPoints:
   web:
     address: ":80"
-    http:
-      redirections:
-        entryPoint:
-          scheme: https
-          to: websecure
+    # http:
+    #   redirections:
+    #     entryPoint:
+    #       scheme: https
+    #       to: websecure
   websecure:
     address: ":443"
 serversTransport:
