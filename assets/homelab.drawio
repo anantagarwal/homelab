@@ -95,7 +95,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="pERkv3QoaEtKQf-kVdr6-52" value="" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.chrome" vertex="1" parent="1">
-          <mxGeometry x="180" y="345" width="40" height="40" as="geometry" />
+          <mxGeometry x="273" y="345" width="40" height="40" as="geometry" />
         </mxCell>
         <mxCell id="pERkv3QoaEtKQf-kVdr6-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-53" target="pERkv3QoaEtKQf-kVdr6-52">
           <mxGeometry relative="1" as="geometry" />
@@ -114,7 +114,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="pERkv3QoaEtKQf-kVdr6-53" value="Cloudfare DNS" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/DNS.svg;" vertex="1" parent="1">
-          <mxGeometry x="60" y="456" width="50" height="50" as="geometry" />
+          <mxGeometry x="153" y="456" width="50" height="50" as="geometry" />
         </mxCell>
         <mxCell id="pERkv3QoaEtKQf-kVdr6-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0.08;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="pERkv3QoaEtKQf-kVdr6-52" target="pERkv3QoaEtKQf-kVdr6-53">
           <mxGeometry relative="1" as="geometry" />
@@ -146,10 +146,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="pERkv3QoaEtKQf-kVdr6-60" value="" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.chrome" vertex="1" parent="1">
-          <mxGeometry x="180" y="585" width="40" height="40" as="geometry" />
+          <mxGeometry x="273" y="585" width="40" height="40" as="geometry" />
         </mxCell>
         <mxCell id="pERkv3QoaEtKQf-kVdr6-68" value="" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cloudflare_Logo.svg/330px-Cloudflare_Logo.svg.png;" vertex="1" parent="1">
-          <mxGeometry x="360" y="560" width="80" height="30" as="geometry" />
+          <mxGeometry x="420" y="560" width="80" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
