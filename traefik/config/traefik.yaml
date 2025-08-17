@@ -1,15 +1,19 @@
+
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
 api:
   dashboard: true
   debug: true
 entryPoints:
-  http:
+  web:
     address: ":80"
     http:
       redirections:
-        entrypoint:
-          to: https
+        entryPoint:
           scheme: https
-  https:
+          to: websecure
+  websecure:
     address: ":443"
 serversTransport:
   insecureSkipVerify: true
@@ -22,8 +26,9 @@ certificatesResolvers:
     acme:
       # caServer: https://acme-v02.api.letsencrypt.org/directory # production (default)
       # caServer: https://acme-staging-v02.api.letsencrypt.org/directory # staging (testing)
-      email: your@email.com # Cloudflare email (or other provider)
-      storage: acme.json
+      caServer: "https://acme-v02.api.letsencrypt.org/directory"
+      email: ${EMAIL}
+      storage: /var/traefik/certs/cloudflare-acme.json
       dnsChallenge:
         provider: cloudflare # change as required
         # disablePropagationCheck: true # Some people using Cloudflare note this can solve DNS propagation issues.

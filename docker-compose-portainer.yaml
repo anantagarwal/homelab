@@ -1,5 +1,3 @@
-name: homelab-portainer
-
 networks:
   default:
     name: homelab-network
