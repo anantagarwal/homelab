@@ -41,6 +41,7 @@ services:
       - CF_API_EMAIL=${CF_API_EMAIL}
     command:
       - --certificatesresolvers.cloudflare.acme.email=${CF_API_EMAIL}
+      - --accesslog=true
     ports:
       - "80:80"
       - "443:443"
