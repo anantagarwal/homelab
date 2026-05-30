@@ -89,7 +89,7 @@ pages:
                     url: https://aeaoa.anantagarwal.me/
                     icon: mdi:office-building
 
-      # Column 3: Indian Stock Markets
+      # Column 3: Indian Stock Markets & Exchange Rates
       - size: full
         widgets:
           - type: markets
@@ -99,6 +99,18 @@ pages:
                 name: Nifty 50
               - symbol: "^BSESN"
                 name: BSE Sensex
+
+          - type: markets
+            title: Exchange Rates (INR)
+            markets:
+              - symbol: "USDINR=X"
+                name: USD / INR
+              - symbol: "SGDINR=X"
+                name: SGD / INR
+              - symbol: "GBPINR=X"
+                name: GBP / INR
+              - symbol: "AUDINR=X"
+                name: AUD / INR
 
   - name: News & Feeds
     slug: feeds
@@ -116,19 +128,29 @@ pages:
               - UC-yP2p3GkWn8ZmrUUn_d2WA # Hardware Haven
               - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips
 
-      # Column 2: Tech Blogs & RSS Feeds
+      # Column 2: Segregated Tech & Self-Hosting Blogs
       - size: full
         widgets:
           - type: rss
-            title: Tech & Self-Hosting Blogs
-            limit: 12
+            title: Self-Hosting
+            limit: 4
             feeds:
               - url: https://selfh.st/rss/
                 title: selfh.st
+
+          - type: rss
+            title: Java & Spring Development
+            limit: 4
+            feeds:
               - url: https://spring.io/blog.atom
                 title: Spring Framework
               - url: https://inside.java/feed.xml
-                title: Java (Inside Java)
+                title: Inside Java
+
+          - type: rss
+            title: Infrastructure & Database
+            limit: 4
+            feeds:
               - url: https://kubernetes.io/feed.xml
                 title: Kubernetes
               - url: https://www.docker.com/blog/feed/
