@@ -6,7 +6,9 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - homarr_data:/app/data
+      # Bind mount to a local folder so dashboards survive container recreation.
+      # Data lives at homarr/data/ on the Pi — easy to back up.
+      - ./data:/app/data
     env_file: .env
     labels:
       - traefik.enable=true
@@ -19,9 +21,6 @@ services:
       - traefik.http.routers.homarr-https.entrypoints=websecure
       - traefik.http.routers.homarr-https.rule=Host(`homarr.internal.anantagarwal.me`)
       - traefik.http.services.homarr.loadbalancer.server.port=7575
-
-volumes:
-  homarr_data:
 
 networks:
   default:
