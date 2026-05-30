@@ -43,6 +43,11 @@ pages:
                 shortcut: "!w"
                 url: https://en.wikipedia.org/wiki/{QUERY}
 
+          - type: server-stats
+            servers:
+              - type: local
+                name: Pi 5
+
       # Column 2: Service Health & Bookmarks
       - size: full
         widgets:
