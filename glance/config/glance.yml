@@ -62,7 +62,7 @@ pages:
                 icon: mdi:file-pdf-box
               - title: Docling
                 url: https://docling.internal.anantagarwal.me/ui
-                icon: mdi:file-document-sync
+                icon: mdi:file-sync
               - title: Dockhand
                 url: https://dockhand.internal.anantagarwal.me
                 icon: mdi:docker
@@ -89,7 +89,7 @@ pages:
                     icon: mdi:file-pdf-box
                   - title: Docling
                     url: https://docling.internal.anantagarwal.me/ui
-                    icon: mdi:file-document-sync
+                    icon: mdi:file-sync
                   - title: Dockhand
                     url: https://dockhand.internal.anantagarwal.me
                     icon: mdi:docker
