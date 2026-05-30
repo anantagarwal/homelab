@@ -97,14 +97,20 @@ pages:
   - name: News & Feeds
     slug: feeds
     columns:
-      # Column 1: Tech & Dev News
+      # Column 1: Dev News & Videos
       - size: full
         widgets:
           - type: hacker-news
             title: Hacker News
             limit: 8
+          - type: videos
+            title: Tech Creators
+            channels:
+              - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling
+              - UC-yP2p3GkWn8ZmrUUn_d2WA # Hardware Haven
+              - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips
 
-      # Column 2: Homelab & Selfhosting Communities
+      # Column 2: Communities & RSS Blogs
       - size: full
         widgets:
           - type: reddit
@@ -119,19 +125,9 @@ pages:
             limit: 5
             show-thumbnails: true
             show-flairs: true
-
-      # Column 3: Tech Video Feeds & RSS Blog
-      - size: full
-        widgets:
           - type: rss
             title: Self-Hosting News
             limit: 6
             feeds:
               - url: https://selfh.st/rss/
                 title: selfh.st
-          - type: videos
-            title: Tech Creators
-            channels:
-              - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling
-              - UC-yP2p3GkWn8ZmrUUn_d2WA # Hardware Haven
-              - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips
