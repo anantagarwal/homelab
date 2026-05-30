@@ -21,7 +21,7 @@ pages:
             timezone: Asia/Kolkata
 
           - type: weather
-            location: Bangalore, India
+            location: Bengaluru, India
             units: metric
             hour-format: 24h
 
@@ -70,22 +70,24 @@ pages:
 
           - type: bookmarks
             title: Core Services
-            links:
-              - title: Traefik
-                url: https://traefik.internal.anantagarwal.me
-                icon: mdi:router-wireless
-              - title: BentoPDF
-                url: https://bentopdf.internal.anantagarwal.me
-                icon: mdi:file-pdf-box
-              - title: Dockhand
-                url: https://dockhand.internal.anantagarwal.me
-                icon: mdi:docker
-              - title: Paperless-NGX
-                url: https://paperless.internal.anantagarwal.me
-                icon: mdi:archive
-              - title: Home Apartment
-                url: https://aeaoa.anantagarwal.me/
-                icon: mdi:apartment
+            groups:
+              - title: Apps
+                links:
+                  - title: Traefik
+                    url: https://traefik.internal.anantagarwal.me
+                    icon: mdi:router-wireless
+                  - title: BentoPDF
+                    url: https://bentopdf.internal.anantagarwal.me
+                    icon: mdi:file-pdf-box
+                  - title: Dockhand
+                    url: https://dockhand.internal.anantagarwal.me
+                    icon: mdi:docker
+                  - title: Paperless-NGX
+                    url: https://paperless.internal.anantagarwal.me
+                    icon: mdi:archive
+                  - title: Home Apartment
+                    url: https://aeaoa.anantagarwal.me/
+                    icon: mdi:apartment
 
       # Column 3: Docker Containers status
       - size: full
