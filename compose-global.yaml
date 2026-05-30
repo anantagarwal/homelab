@@ -1,0 +1,30 @@
+# Global homelab orchestrator
+#
+# Usage:
+#   docker compose -f compose-global.yaml up -d        # start everything
+#   docker compose -f compose-global.yaml pull          # update all images
+#   docker compose -f compose-global.yaml down          # stop everything
+#   docker compose -f compose-global.yaml up -d traefik # start single service
+#
+# Requires Docker Compose v2.20+ (ships with Docker Engine 24+).
+# Each service lives in its own folder and can also be managed independently:
+#   docker compose -f traefik/compose.yaml up -d
+#
+# Services & internal URLs:
+#   traefik     → traefik.internal.anantagarwal.me
+#   homarr      → homarr.internal.anantagarwal.me
+#   bentopdf    → bentopdf.internal.anantagarwal.me
+#   dockhand    → dockhand.internal.anantagarwal.me
+#   paperless   → paperless.internal.anantagarwal.me
+
+include:
+  - traefik/compose.yaml
+  - homarr/compose.yaml
+  - bentopdf/compose.yaml
+  - dockhand/compose.yaml
+  - paperless-ngx/compose.yaml
+
+networks:
+  default:
+    name: homelab-network
+    external: true

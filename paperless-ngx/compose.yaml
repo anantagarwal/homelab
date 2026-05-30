@@ -1,0 +1,76 @@
+services:
+
+  # ── Redis broker ──────────────────────────────────────────────────────────
+  paperless-broker:
+    image: docker.io/library/redis:7
+    container_name: paperless-broker
+    restart: unless-stopped
+    volumes:
+      - paperless_redis:/data
+
+  # ── Gotenberg: converts Office docs + HTML to PDF ─────────────────────────
+  # arm64 (Raspberry Pi 4/5): use docker.io/gotenberg/gotenberg:8 — it ships
+  # arm64 binaries. If Chromium-based conversions are slow on Pi, consider
+  # disabling Chromium and relying solely on LibreOffice via Tika.
+  paperless-gotenberg:
+    image: docker.io/gotenberg/gotenberg:8
+    container_name: paperless-gotenberg
+    restart: unless-stopped
+    command:
+      - "gotenberg"
+      - "--chromium-disable-javascript=true"
+      - "--chromium-allow-list=file:///tmp/.*"
+
+  # ── Apache Tika: extracts text from Office/binary files ───────────────────
+  # Note: official apache/tika image is amd64-only. On arm64 (Raspberry Pi),
+  # use the community arm64 image: logicalspark/docker-tikaserver:latest
+  # or run with: platform: linux/amd64 (requires QEMU binfmt on the Pi).
+  paperless-tika:
+    image: docker.io/apache/tika:latest
+    container_name: paperless-tika
+    restart: unless-stopped
+
+  # ── Paperless-NGX ─────────────────────────────────────────────────────────
+  # SQLite variant — no PostgreSQL needed.
+  # Supports amd64, arm, arm64 natively.
+  paperless:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    container_name: paperless
+    restart: unless-stopped
+    depends_on:
+      - paperless-broker
+      - paperless-gotenberg
+      - paperless-tika
+    volumes:
+      - paperless_data:/usr/src/paperless/data
+      - paperless_media:/usr/src/paperless/media
+      - ./export:/usr/src/paperless/export
+      - ./consume:/usr/src/paperless/consume
+    env_file: .env
+    environment:
+      PAPERLESS_REDIS: redis://paperless-broker:6379
+      PAPERLESS_TIKA_ENABLED: 1
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenberg:3000
+      PAPERLESS_TIKA_ENDPOINT: http://paperless-tika:9998
+      PAPERLESS_URL: https://paperless.internal.anantagarwal.me
+    labels:
+      - traefik.enable=true
+      - traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https
+      - traefik.http.routers.paperless-http.rule=Host(`paperless.internal.anantagarwal.me`)
+      - traefik.http.routers.paperless-http.entrypoints=web
+      - traefik.http.routers.paperless-http.middlewares=traefik-https-redirect
+      - traefik.http.routers.paperless-https.rule=Host(`paperless.internal.anantagarwal.me`)
+      - traefik.http.routers.paperless-https.entrypoints=websecure
+      - traefik.http.routers.paperless-https.tls=true
+      - traefik.http.routers.paperless-https.tls.certresolver=cloudflare
+      - traefik.http.services.paperless.loadbalancer.server.port=8000
+
+volumes:
+  paperless_data:
+  paperless_media:
+  paperless_redis:
+
+networks:
+  default:
+    name: homelab-network
+    external: true

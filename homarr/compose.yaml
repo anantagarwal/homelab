@@ -1,0 +1,30 @@
+services:
+
+  homarr:
+    image: ghcr.io/homarr-labs/homarr:latest
+    container_name: homarr
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - homarr_data:/app/data
+    environment:
+      SECRET_ENCRYPTION_KEY: ${HOMARR_SECRET_ENCRYPTION_KEY}
+    labels:
+      - traefik.enable=true
+      - traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https
+      - traefik.http.routers.homarr-http.middlewares=traefik-https-redirect
+      - traefik.http.routers.homarr-http.rule=Host(`homarr.internal.anantagarwal.me`)
+      - traefik.http.routers.homarr-http.entrypoints=web
+      - traefik.http.routers.homarr-https.tls=true
+      - traefik.http.routers.homarr-https.tls.certresolver=cloudflare
+      - traefik.http.routers.homarr-https.entrypoints=websecure
+      - traefik.http.routers.homarr-https.rule=Host(`homarr.internal.anantagarwal.me`)
+      - traefik.http.services.homarr.loadbalancer.server.port=7575
+
+volumes:
+  homarr_data:
+
+networks:
+  default:
+    name: homelab-network
+    external: true
