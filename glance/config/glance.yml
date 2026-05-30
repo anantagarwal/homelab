@@ -1,0 +1,140 @@
+# Glance Configuration File
+# Fully declarative, easy to backup and modify.
+# For more info: https://github.com/glanceapp/glance
+
+theme:
+  background-color: 240 21 15
+  contrast-multiplier: 1.2
+  primary-color: 217 92 83
+  positive-color: 115 54 76
+  negative-color: 347 70 65
+
+pages:
+  - name: Homelab
+    slug: home
+    columns:
+      # Column 1: Widgets, Tools, Weather
+      - size: small
+        widgets:
+          - type: clock
+            hour-format: 24h
+            timezone: Asia/Kolkata
+
+          - type: weather
+            location: Bangalore, India
+            units: metric
+            hour-format: 24h
+
+          - type: search
+            search-engine: google
+            autofocus: true
+            new-tab: true
+            bangs:
+              - title: Google
+                shortcut: "!g"
+                url: https://google.com/search?q={QUERY}
+              - title: GitHub
+                shortcut: "!gh"
+                url: https://github.com/search?q={QUERY}
+              - title: YouTube
+                shortcut: "!yt"
+                url: https://www.youtube.com/results?search_query={QUERY}
+              - title: Wikipedia
+                shortcut: "!w"
+                url: https://en.wikipedia.org/wiki/{QUERY}
+
+      # Column 2: Site Status / Uptime Monitor
+      - size: full
+        widgets:
+          - type: monitor
+            title: Service Health
+            services:
+              - name: Traefik
+                url: https://traefik.internal.anantagarwal.me
+                icon: mdi:router-wireless
+              - name: BentoPDF
+                url: https://bentopdf.internal.anantagarwal.me
+                icon: mdi:file-pdf-box
+              - name: Dockhand
+                url: https://dockhand.internal.anantagarwal.me
+                icon: mdi:docker
+              - name: Paperless-NGX
+                url: https://paperless.internal.anantagarwal.me
+                icon: mdi:archive
+              - name: Glance Dashboard
+                url: https://home.internal.anantagarwal.me
+                icon: mdi:view-dashboard
+              - name: Home Apartment
+                url: https://aeaoa.anantagarwal.me/
+                icon: mdi:apartment
+
+      # Column 3: Bookmarks / Quick Links
+      - size: full
+        widgets:
+          - type: bookmarks
+            title: Core Services
+            links:
+              - title: Traefik
+                url: https://traefik.internal.anantagarwal.me
+                icon: mdi:router-wireless
+              - title: BentoPDF
+                url: https://bentopdf.internal.anantagarwal.me
+                icon: mdi:file-pdf-box
+              - title: Dockhand
+                url: https://dockhand.internal.anantagarwal.me
+                icon: mdi:docker
+              - title: Paperless-NGX
+                url: https://paperless.internal.anantagarwal.me
+                icon: mdi:archive
+              - title: Home Apartment
+                url: https://aeaoa.anantagarwal.me/
+                icon: mdi:apartment
+
+      # Column 4: Docker Containers status
+      - size: full
+        widgets:
+          - type: docker-containers
+            title: Docker Status
+            running-only: true
+
+  - name: News & Feeds
+    slug: feeds
+    columns:
+      # Column 1: Tech & Dev News
+      - size: full
+        widgets:
+          - type: hacker-news
+            title: Hacker News
+            limit: 8
+
+      # Column 2: Homelab & Selfhosting Communities
+      - size: full
+        widgets:
+          - type: reddit
+            subreddit: selfhosted
+            title: r/selfhosted
+            limit: 5
+            show-thumbnails: true
+            show-flairs: true
+          - type: reddit
+            subreddit: homelab
+            title: r/homelab
+            limit: 5
+            show-thumbnails: true
+            show-flairs: true
+
+      # Column 3: Tech Video Feeds & RSS Blog
+      - size: full
+        widgets:
+          - type: rss
+            title: Self-Hosting News
+            limit: 6
+            feeds:
+              - url: https://selfh.st/rss/
+                title: selfh.st
+          - type: videos
+            title: Tech Creators
+            channels:
+              - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling
+              - UC-yP2p3GkWn8ZmrUUn_d2WA # Hardware Haven
+              - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips

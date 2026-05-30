@@ -1,0 +1,26 @@
+services:
+
+  glance:
+    image: glanceapp/glance:latest
+    container_name: glance
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # Bind mount to local config file so dashboard config is fully declarative.
+      - ./config/glance.yml:/app/config/glance.yml
+    labels:
+      - traefik.enable=true
+      - traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https
+      - traefik.http.routers.glance-http.middlewares=traefik-https-redirect
+      - traefik.http.routers.glance-http.rule=Host(`home.internal.anantagarwal.me`)
+      - traefik.http.routers.glance-http.entrypoints=web
+      - traefik.http.routers.glance-https.tls=true
+      - traefik.http.routers.glance-https.tls.certresolver=cloudflare
+      - traefik.http.routers.glance-https.entrypoints=websecure
+      - traefik.http.routers.glance-https.rule=Host(`home.internal.anantagarwal.me`)
+      - traefik.http.services.glance.loadbalancer.server.port=8080
+
+networks:
+  default:
+    name: homelab-network
+    external: true

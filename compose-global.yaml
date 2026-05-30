@@ -12,14 +12,14 @@
 #
 # Services & internal URLs:
 #   traefik     → traefik.internal.anantagarwal.me
-#   homarr      → homarr.internal.anantagarwal.me
+#   glance      → home.internal.anantagarwal.me
 #   bentopdf    → bentopdf.internal.anantagarwal.me
 #   dockhand    → dockhand.internal.anantagarwal.me
 #   paperless   → paperless.internal.anantagarwal.me
 
 include:
   - traefik/compose.yaml
-  - homarr/compose.yaml
+  - glance/compose.yaml
   - bentopdf/compose.yaml
   - dockhand/compose.yaml
   - paperless-ngx/compose.yaml

@@ -30,8 +30,8 @@ hl down                # stop everything
 hl restart             # stop + start with orphan cleanup
 hl update              # pull latest images and restart
 
-hl up homarr           # start a single service
-hl restart homarr      # restart a single service
+hl up glance           # start a single service
+hl restart glance      # restart a single service
 hl update paperless    # update a single service
 
 hl logs traefik        # follow logs (Ctrl-C to stop)
@@ -58,7 +58,7 @@ docker compose -f traefik/compose.yaml up -d
 | Service | URL | Description |
 |---------|-----|-------------|
 | Traefik | [traefik.internal.anantagarwal.me](https://traefik.internal.anantagarwal.me) | Reverse proxy dashboard |
-| Homarr | [homarr.internal.anantagarwal.me](https://homarr.internal.anantagarwal.me) | Homelab dashboard |
+| Glance | [home.internal.anantagarwal.me](https://home.internal.anantagarwal.me) | Homelab dashboard |
 | BentoPDF | [bentopdf.internal.anantagarwal.me](https://bentopdf.internal.anantagarwal.me) | Privacy-first PDF toolkit |
 | Dockhand | [dockhand.internal.anantagarwal.me](https://dockhand.internal.anantagarwal.me) | Docker management UI |
 | Paperless-NGX | [paperless.internal.anantagarwal.me](https://paperless.internal.anantagarwal.me) | Document management |
@@ -74,9 +74,10 @@ homelab/
 │   ├── compose.yaml
 │   ├── config/              # traefik static/dynamic config
 │   └── certs/               # TLS certificates (gitignored)
-├── homarr/                  # Homarr dashboard
+├── glance/                  # Glance dashboard
 │   ├── compose.yaml
-│   └── .env.example
+│   └── config/              # Glance dashboard config
+│       └── glance.yml
 ├── bentopdf/                # BentoPDF self-hosted
 │   └── compose.yaml
 ├── dockhand/                # Dockhand Docker UI
@@ -93,10 +94,6 @@ homelab/
 Services that require secrets use a `.env` file in their folder. Copy the example and fill in your values:
 
 ```bash
-# Homarr — requires a 64-char hex encryption key
-cp homarr/.env.example homarr/.env
-echo "SECRET_ENCRYPTION_KEY=$(openssl rand -hex 32)" > homarr/.env
-
 # Paperless-NGX — requires secret key + admin credentials
 cp paperless-ngx/.env.example paperless-ngx/.env
 nano paperless-ngx/.env
