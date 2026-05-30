@@ -43,7 +43,7 @@ pages:
                 shortcut: "!w"
                 url: https://en.wikipedia.org/wiki/{QUERY}
 
-      # Column 2: Site Status / Uptime Monitor
+      # Column 2: Service Health & Bookmarks
       - size: full
         widgets:
           - type: monitor
@@ -68,9 +68,6 @@ pages:
                 url: https://aeaoa.anantagarwal.me/
                 icon: mdi:apartment
 
-      # Column 3: Bookmarks / Quick Links
-      - size: full
-        widgets:
           - type: bookmarks
             title: Core Services
             links:
@@ -90,7 +87,7 @@ pages:
                 url: https://aeaoa.anantagarwal.me/
                 icon: mdi:apartment
 
-      # Column 4: Docker Containers status
+      # Column 3: Docker Containers status
       - size: full
         widgets:
           - type: docker-containers
