@@ -7,8 +7,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - homarr_data:/app/data
-    environment:
-      SECRET_ENCRYPTION_KEY: ${HOMARR_SECRET_ENCRYPTION_KEY}
+    env_file: .env
     labels:
       - traefik.enable=true
       - traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https
