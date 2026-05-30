@@ -132,13 +132,6 @@ pages:
       - size: full
         widgets:
           - type: rss
-            title: Self-Hosting
-            limit: 4
-            feeds:
-              - url: https://selfh.st/rss/
-                title: selfh.st
-
-          - type: rss
             title: Java & Spring Development
             limit: 4
             feeds:
@@ -157,3 +150,10 @@ pages:
                 title: Docker
               - url: https://www.postgresql.org/news/pgsql.rss
                 title: PostgreSQL
+
+          - type: rss
+            title: Self-Hosting
+            limit: 4
+            feeds:
+              - url: https://selfh.st/rss/
+                title: selfh.st
