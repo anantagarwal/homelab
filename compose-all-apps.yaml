@@ -12,7 +12,12 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`whoami.anantagarwal.me`)"
       - "traefik.http.routers.whoami.entrypoints=web"
+      - "traefik.http.routers.whoami.priority=10"
+      - "traefik.http.routers.whoami-https.rule=Host(`whoami.anantagarwal.me`)"
       - "traefik.http.routers.whoami-https.entrypoints=websecure"
+      - "traefik.http.routers.whoami-https.tls=true"
+      - "traefik.http.routers.whoami-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.whoami-https.priority=10"
   
   homepage:
     image: ghcr.io/gethomepage/homepage:v1.4.5
@@ -34,7 +39,7 @@ services:
       - traefik.http.routers.homepage-https.rule=Host(`homepage.internal.anantagarwal.me`)
 
   traefik:
-    image: "traefik:v3.5"
+    image: "traefik:v3.6.10"
     container_name: "traefik"
     environment:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}

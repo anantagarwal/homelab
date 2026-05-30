@@ -6,7 +6,7 @@ networks:
 services:
   portainer:
     image: portainer/portainer-ce:2.32.0-alpine
-    restart: always
+    restart: no
     ports:
       - "8000:8000"
       - "9443:9443"
