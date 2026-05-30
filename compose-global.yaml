@@ -23,6 +23,7 @@ include:
   - bentopdf/compose.yaml
   - dockhand/compose.yaml
   - paperless-ngx/compose.yaml
+  - docling/compose.yaml
 
 networks:
   default:

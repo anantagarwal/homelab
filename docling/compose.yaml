@@ -1,0 +1,39 @@
+services:
+
+  docling:
+    image: quay.io/docling-project/docling-serve:latest
+    container_name: docling
+    restart: unless-stopped
+    environment:
+      - DOCLING_SERVE_ENABLE_UI=true
+      # Persist huggingface and docling cache in the mounted volume
+      - HF_HOME=/opt/app-root/src/.cache/huggingface
+      - DOCLING_SERVE_ARTIFACTS_PATH=/opt/app-root/src/.cache/docling/models
+    volumes:
+      - docling_cache:/opt/app-root/src/.cache
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:5001/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - traefik.enable=true
+      # HTTP -> HTTPS redirect
+      - traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https
+      - traefik.http.routers.docling-http.rule=Host(`docling.internal.anantagarwal.me`)
+      - traefik.http.routers.docling-http.entrypoints=web
+      - traefik.http.routers.docling-http.middlewares=traefik-https-redirect
+      # HTTPS with Cloudflare cert
+      - traefik.http.routers.docling-https.rule=Host(`docling.internal.anantagarwal.me`)
+      - traefik.http.routers.docling-https.entrypoints=websecure
+      - traefik.http.routers.docling-https.tls=true
+      - traefik.http.routers.docling-https.tls.certresolver=cloudflare
+      - traefik.http.services.docling.loadbalancer.server.port=5001
+
+volumes:
+  docling_cache:
+
+networks:
+  default:
+    name: homelab-network
+    external: true

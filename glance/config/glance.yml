@@ -55,6 +55,9 @@ pages:
               - title: BentoPDF
                 url: https://bentopdf.internal.anantagarwal.me
                 icon: mdi:file-pdf-box
+              - title: Docling
+                url: https://docling.internal.anantagarwal.me/ui
+                icon: mdi:file-document-sync
               - title: Dockhand
                 url: https://dockhand.internal.anantagarwal.me
                 icon: mdi:docker
@@ -79,6 +82,9 @@ pages:
                   - title: BentoPDF
                     url: https://bentopdf.internal.anantagarwal.me
                     icon: mdi:file-pdf-box
+                  - title: Docling
+                    url: https://docling.internal.anantagarwal.me/ui
+                    icon: mdi:file-document-sync
                   - title: Dockhand
                     url: https://dockhand.internal.anantagarwal.me
                     icon: mdi:docker
