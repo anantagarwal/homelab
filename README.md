@@ -11,25 +11,35 @@ My Home Lab running on a Raspberry Pi 5, managed with Docker Compose and Traefik
 - **DNS**: Internal services are accessible at `*.internal.anantagarwal.me`
 - **Tunnel**: Cloudflare Tunnel exposes select services to the internet
 
-## Running the Stack
+## Managing the Stack
 
-All services are orchestrated from a single file:
+A helper script `hl` wraps all common operations. Make it executable once:
 
 ```bash
-# Start everything
-docker compose -f compose-global.yaml up -d
+chmod +x ~/homelab/hl
 
-# Update all images
-docker compose -f compose-global.yaml pull && docker compose -f compose-global.yaml up -d
-
-# Start / restart a specific service
-docker compose -f compose-global.yaml up -d homarr
-
-# Stop everything
-docker compose -f compose-global.yaml down
+# Optional: symlink to PATH so you can run it from anywhere
+sudo ln -sf ~/homelab/hl /usr/local/bin/hl
 ```
 
-Each service folder also contains its own `compose.yaml` and can be managed independently:
+### Commands
+
+```bash
+hl up                  # start everything
+hl down                # stop everything
+hl restart             # stop + start with orphan cleanup
+hl update              # pull latest images and restart
+
+hl up homarr           # start a single service
+hl restart homarr      # restart a single service
+hl update paperless    # update a single service
+
+hl logs traefik        # follow logs (Ctrl-C to stop)
+hl status              # show all running containers
+hl exec paperless bash # open a shell in a container
+```
+
+Each service folder also contains its own `compose.yaml` for direct use:
 
 ```bash
 docker compose -f traefik/compose.yaml up -d
