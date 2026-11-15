@@ -134,7 +134,7 @@ pages:
   - name: Server Stats
     slug: servers
     columns:
-      - size: full
+      - size: small
         widgets:
           - type: server-stats
             servers:
