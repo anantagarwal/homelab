@@ -5,11 +5,11 @@
 #   ~/repo/hl          → uses ~/repo/compose.yaml   (all stacks)
 #   ~/repo/homelab/hl  → uses ~/repo/homelab/compose-global.yaml (homelab only)
 #
-# Usage: hl [options] [pi|nuc] <command> [service]
+# Usage: hl [options] [pi|<nuc-ct>] <command> [service]
 #
-# Targets (optional, defaults to pi / compose-global.yaml):
-#   pi                  Target Raspberry Pi stack (compose-global.yaml)
-#   nuc                 Target Intel NUC stack (nuc/compose.yaml)
+# Targets (optional, defaults to pi / pi/compose.yaml):
+#   pi                  Target Raspberry Pi stack (pi/compose.yaml)
+#   <nuc-ct>            Target a NUC CT stack (nuc/<nuc-ct>/compose.yaml, e.g. media)
 #
 # Options:
 #   -f <file>   Override the compose file path
@@ -27,11 +27,11 @@
 # Examples:
 #   hl up
 #   hl pi restart traefik
-#   hl nuc up
-#   hl nuc update jellyfin
+#   hl media up
+#   hl media update jellyfin
 #   hl logs traefik
-#   hl nuc exec paperless bash
-#   hl -f ~/repo/homelab/compose-global.yaml status
+#   hl media exec paperless bash
+#   hl -f ~/repo/homelab/pi/compose.yaml status
 
 set -euo pipefail
 
@@ -41,6 +41,7 @@ SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
 # Candidates in priority order
 _find_compose() {
   local candidates=(
+    "$SCRIPT_DIR/pi/compose.yaml"
     "$SCRIPT_DIR/compose.yaml"
     "$SCRIPT_DIR/compose-global.yaml"
     "$SCRIPT_DIR/docker-compose.yml"
@@ -71,11 +72,11 @@ die()     { echo -e "${RED}✘ $*${RESET}" >&2; exit 1; }
 usage() {
   echo -e "${BOLD}hl — Homelab manager${RESET}"
   echo ""
-  echo -e "${BOLD}Usage:${RESET} $(basename "$0") [-f compose-file] [pi|nuc] <command> [service]"
+  echo -e "${BOLD}Usage:${RESET} $(basename "$0") [-f compose-file] [pi|<nuc-ct>] <command> [service]"
   echo ""
   echo -e "${BOLD}Targets:${RESET}"
-  printf "  %-22s %s\n" "pi"                "Raspberry Pi stack (default: compose-global.yaml)"
-  printf "  %-22s %s\n" "nuc"               "Intel NUC stack (nuc/compose.yaml)"
+  printf "  %-22s %s\n" "pi"                "Raspberry Pi stack (default: pi/compose.yaml)"
+  printf "  %-22s %s\n" "<nuc-ct>"          "Intel NUC CT stack (nuc/<nuc-ct>/compose.yaml, e.g. media)"
   echo ""
   echo -e "${BOLD}Options:${RESET}"
   echo "  -f <file>   Override the compose file (default: auto-detected)"
@@ -105,15 +106,17 @@ while getopts ":f:h" opt; do
 done
 shift $((OPTIND - 1))
 
-# Optional host target prefix: `hl pi <cmd>` or `hl nuc <cmd>`
+# Optional host/CT target prefix: `hl pi <cmd>` or `hl <nuc-ct> <cmd>` (e.g. `hl media <cmd>`)
 case "${1:-}" in
   pi)
-    [[ "$COMPOSE_OVERRIDE" == false ]] && COMPOSE_FILE="$SCRIPT_DIR/compose-global.yaml"
+    [[ "$COMPOSE_OVERRIDE" == false ]] && COMPOSE_FILE="$SCRIPT_DIR/pi/compose.yaml"
     shift
     ;;
-  nuc)
-    [[ "$COMPOSE_OVERRIDE" == false ]] && COMPOSE_FILE="$SCRIPT_DIR/nuc/compose.yaml"
-    shift
+  *)
+    if [[ -n "${1:-}" && -f "$SCRIPT_DIR/nuc/${1}/compose.yaml" ]]; then
+      [[ "$COMPOSE_OVERRIDE" == false ]] && COMPOSE_FILE="$SCRIPT_DIR/nuc/${1}/compose.yaml"
+      shift
+    fi
     ;;
 esac
 

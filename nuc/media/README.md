@@ -141,11 +141,11 @@ chmod +x hl
 docker network create homelab-network
 
 # Configure Paperless secrets
-cp nuc/paperless-ngx/.env.example nuc/paperless-ngx/.env
-nano nuc/paperless-ngx/.env
+cp nuc/media/paperless-ngx/.env.example nuc/media/paperless-ngx/.env
+nano nuc/media/paperless-ngx/.env
 
 # Start Jellyfin + Paperless-NGX
-./hl nuc up
+./hl media up
 ```
 
 ---
@@ -154,11 +154,14 @@ nano nuc/paperless-ngx/.env
 
 > **Where to run:** **Raspberry Pi** (`ssh pi` / your Pi host).
 
-Pull the updated repo on the Raspberry Pi and run `./hl restart` (no service name) so Traefik + Glance pick up the new routes and the old `paperless*` / `docling` orphan containers on the Pi are stopped and removed:
+Pull the updated repo on the Raspberry Pi, move your untracked `traefik/.env` and `traefik/certs/` into `pi/traefik/` (if migrating from the old root layout), and run `./hl restart` (no service name) so Traefik + Glance pick up the new routes and the old `paperless*` / `docling` orphan containers on the Pi are stopped and removed:
 
 ```bash
 cd ~/homelab
 git pull
+# One-time if moving from the old root layout:
+mv traefik/.env pi/traefik/.env
+mv traefik/certs pi/traefik/certs
 ./hl restart
 ```
 

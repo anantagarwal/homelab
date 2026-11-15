@@ -1,32 +1,32 @@
-# Global homelab orchestrator
+# Raspberry Pi 5 orchestrator
 #
 # Usage:
-#   docker compose -f compose-global.yaml up -d        # start everything
-#   docker compose -f compose-global.yaml pull          # update all images
-#   docker compose -f compose-global.yaml down          # stop everything
-#   docker compose -f compose-global.yaml up -d traefik # start single service
+#   ./hl pi up        # start everything
+#   ./hl pi update    # update all images
+#   ./hl pi down      # stop everything
+#   ./hl pi up traefik
 #
 # Requires Docker Compose v2.20+ (ships with Docker Engine 24+).
 # Each service lives in its own folder and can also be managed independently:
-#   docker compose -f traefik/compose.yaml up -d
+#   docker compose -f pi/traefik/compose.yaml up -d
 #
 # Services & internal URLs:
 #   traefik     → traefik.internal.anantagarwal.me
 #   glance      → home.internal.anantagarwal.me
 #   bentopdf    → bentopdf.internal.anantagarwal.me
 #   dockhand    → dockhand.internal.anantagarwal.me
-#   docling     → docling.internal.anantagarwal.me
 #
-# NUC-hosted services (proxied by Pi Traefik via traefik/config/dynamic/nuc.yaml):
+# NUC-hosted services (proxied by Pi Traefik via pi/traefik/config/dynamic/nuc.yaml):
 #   jellyfin    → jellyfin.internal.anantagarwal.me
 #   paperless   → paperless.internal.anantagarwal.me
+
+name: homelab
 
 include:
   - traefik/compose.yaml
   - glance/compose.yaml
   - bentopdf/compose.yaml
   - dockhand/compose.yaml
-  - docling/compose.yaml
 
 networks:
   default:

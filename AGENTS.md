@@ -3,18 +3,22 @@
 ## Project Overview
 - **Purpose:** Self-hosted homelab running on a Raspberry Pi 5 (`arm64`), orchestrated with Docker Compose (v2.20+ `include:`) and Traefik v3.
 - **Layout:**
-  - `compose-global.yaml` — Top-level orchestrator including all service stacks on the external `homelab-network` bridge.
-  - `hl` — Bash CLI wrapper around `docker compose -f compose-global.yaml`.
-  - `<service>/compose.yaml` — Self-contained service definitions (`traefik/`, `glance/`, `bentopdf/`, `dockhand/`, `paperless-ngx/`, `docling/`).
-  - `traefik/config/traefik.yaml` — Traefik static configuration (Cloudflare DNS-01 ACME, Docker provider).
-  - `glance/config/glance.yml` — Declarative dashboard configuration.
+  - `pi/compose.yaml` — Raspberry Pi top-level orchestrator (`name: homelab`) including Pi stacks on `homelab-network`.
+  - `nuc/media/compose.yaml` — Intel NUC `media` CT (`amd64` Proxmox CT `202`) orchestrator.
+  - `hl` — Bash CLI wrapper (`./hl pi <cmd>` or `./hl <ct> <cmd>`, e.g. `./hl media <cmd>`).
+  - `pi/<service>/compose.yaml` — Pi service definitions (`traefik/`, `glance/`, `bentopdf/`, `dockhand/`).
+  - `nuc/<ct>/<service>/compose.yaml` — NUC per-CT service definitions (e.g. `nuc/media/jellyfin/`, `nuc/media/paperless-ngx/`).
+  - `pi/traefik/config/traefik.yaml` — Traefik static configuration (Cloudflare DNS-01 ACME, Docker + File providers).
+  - `pi/traefik/config/dynamic/nuc.yaml` — Dynamic Traefik routes proxying NUC services (`192.168.1.202`).
+  - `pi/glance/config/glance.yml` — Declarative dashboard configuration.
 
 ## Commands & Verification
-- **Manage stack:** `./hl up [svc]`, `./hl down [svc]`, `./hl restart [svc]`, `./hl update [svc]`
-- **Inspect stack:** `./hl list`, `./hl status`, `./hl logs [svc]`, `./hl exec <svc> [cmd]`
+- **Manage stack:** `./hl [pi|<ct>] up [svc]`, `./hl [pi|<ct>] down [svc]`, `./hl [pi|<ct>] restart [svc]`, `./hl [pi|<ct>] update [svc]`
+- **Inspect stack:** `./hl [pi|<ct>] list`, `./hl [pi|<ct>] status`, `./hl [pi|<ct>] logs [svc]`, `./hl [pi|<ct>] exec <svc> [cmd]`
 - **Validate compose changes (required before finishing):**
-  - Full stack: `docker compose -f compose-global.yaml config -q`
-  - Single service: `docker compose -f <service>/compose.yaml config -q`
+  - Pi stack: `docker compose -f pi/compose.yaml config -q`
+  - NUC CT stack: `docker compose -f nuc/<ct>/compose.yaml config -q`
+  - Single service: `docker compose -f <host-or-ct>/<service>/compose.yaml config -q`
 - **Verify `hl` syntax if edited:** `bash -n hl`
 
 ## Conventions

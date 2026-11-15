@@ -53,7 +53,7 @@ flowchart LR
 
 ## Managing the Stack
 
-A helper script `hl` manages both hosts (`hl pi <cmd>` for Raspberry Pi, `hl nuc <cmd>` for Intel NUC; omitting the target defaults to `pi`). Make it executable once:
+A helper script `hl` manages both the Raspberry Pi and individual NUC Proxmox CTs (`hl pi <cmd>`, `hl media <cmd>`, or `hl <ct-name> <cmd>` for any `nuc/<ct-name>/compose.yaml`; omitting the target defaults to `pi`). Make it executable once:
 
 ```bash
 chmod +x ~/homelab/hl
@@ -77,15 +77,15 @@ hl pi status           # show all running containers
 hl pi exec glance sh   # open a shell in a container
 ```
 
-### Intel NUC (`hl nuc`)
+### Intel NUC — `media` CT (`hl media`)
 
-See [nuc/README.md](nuc/README.md) for Proxmox LXC, ZFS bind-mount, Samba, and `/dev/dri` setup. Once provisioned, manage the NUC stack from inside the `media` CT (`192.168.1.202`):
+See [nuc/media/README.md](nuc/media/README.md) for Proxmox LXC, ZFS bind-mount, Samba, and `/dev/dri` setup. Once provisioned, manage the `media` CT stack from inside CT `202` (`192.168.1.202`):
 
 ```bash
-hl nuc up              # start Jellyfin & Paperless-NGX
-hl nuc update          # pull latest images and restart
-hl nuc logs jellyfin   # follow Jellyfin logs
-hl nuc status          # show NUC container states
+hl media up              # start Jellyfin & Paperless-NGX
+hl media update          # pull latest images and restart
+hl media logs jellyfin   # follow Jellyfin logs
+hl media status          # show media CT container states
 ```
 
 ## Services
@@ -111,31 +111,33 @@ hl nuc status          # show NUC container states
 
 ```text
 homelab/
-├── compose-global.yaml          # Pi top-level orchestrator
-├── hl                           # Pi management CLI wrapper
-├── traefik/                     # Traefik + Cloudflare tunnel + whoami
-│   ├── compose.yaml
-│   ├── config/
-│   │   ├── traefik.yaml         # static config (Docker + File providers)
-│   │   └── dynamic/
-│   │       └── nuc.yaml         # routes to NUC services (192.168.1.202)
-│   └── certs/                   # TLS certificates (gitignored)
-├── glance/                      # Glance dashboard
-│   ├── compose.yaml
-│   └── config/
-│       └── glance.yml
-├── bentopdf/                    # BentoPDF self-hosted
-│   └── compose.yaml
-├── dockhand/                    # Dockhand Docker UI
-│   └── compose.yaml
-└── nuc/                         # Intel NUC (Proxmox media CT)
-    ├── README.md                # Proxmox LXC, ZFS, Samba & QuickSync guide
-    ├── compose.yaml             # NUC top-level orchestrator
-    ├── jellyfin/
-    │   └── compose.yaml
-    └── paperless-ngx/
-        ├── compose.yaml
-        └── .env.example
+├── hl                           # Multi-host management CLI wrapper
+├── pi/                          # Raspberry Pi 5 (arm64)
+│   ├── compose.yaml             # Pi top-level orchestrator
+│   ├── traefik/                 # Traefik + Cloudflare tunnel + whoami
+│   │   ├── compose.yaml
+│   │   ├── config/
+│   │   │   ├── traefik.yaml     # static config (Docker + File providers)
+│   │   │   └── dynamic/
+│   │   │       └── nuc.yaml     # routes to NUC services (192.168.1.202)
+│   │   └── certs/               # TLS certificates (gitignored)
+│   ├── glance/                  # Glance dashboard
+│   │   ├── compose.yaml
+│   │   └── config/
+│   │       └── glance.yml
+│   ├── bentopdf/                # BentoPDF self-hosted
+│   │   └── compose.yaml
+│   └── dockhand/                # Dockhand Docker UI
+│       └── compose.yaml
+└── nuc/                         # Intel NUC (Proxmox VE CTs)
+    └── media/                   # CT 202 (192.168.1.202)
+        ├── README.md            # Proxmox LXC, ZFS, Samba & QuickSync guide
+        ├── compose.yaml         # media CT orchestrator
+        ├── jellyfin/
+        │   └── compose.yaml
+        └── paperless-ngx/
+            ├── compose.yaml
+            └── .env.example
 ```
 
 ## Secrets Setup
@@ -143,9 +145,9 @@ homelab/
 Services that require secrets use a `.env` file in their folder. Copy the example and fill in your values:
 
 ```bash
-# Paperless-NGX (on NUC) — requires secret key + admin credentials
-cp nuc/paperless-ngx/.env.example nuc/paperless-ngx/.env
-nano nuc/paperless-ngx/.env
+# Paperless-NGX (on NUC media CT) — requires secret key + admin credentials
+cp nuc/media/paperless-ngx/.env.example nuc/media/paperless-ngx/.env
+nano nuc/media/paperless-ngx/.env
 ```
 
 > **Note:** `.env` files are gitignored and should never be committed.
