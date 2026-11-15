@@ -6,7 +6,7 @@ services:
     container_name: paperless-broker
     restart: unless-stopped
     volumes:
-      - /mnt/paperless/redis:/data
+      - paperless_redis:/data
 
   # ── Gotenberg: converts Office docs + HTML to PDF ─────────────────────────
   paperless-gotenberg:
@@ -48,6 +48,9 @@ services:
       PAPERLESS_TIKA_ENDPOINT: http://paperless-tika:9998
       PAPERLESS_URL: https://paperless.internal.anantagarwal.me
       PAPERLESS_CSRF_TRUSTED_ORIGINS: https://paperless.internal.anantagarwal.me
+
+volumes:
+  paperless_redis:
 
 networks:
   default:

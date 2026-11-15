@@ -21,10 +21,10 @@ zfs create -o quota=20G zfspool/paperless
 mkdir -p /zfspool/paperless/{data,media,consume,export,redis}
 
 # Allow unprivileged LXCs (UID/GID 100000+ mapping) to read/write cleanly
-chmod -R 777 /zfspool/media /zfspool/paperless/consume
+chmod -R 777 /zfspool/media /zfspool/paperless
 ```
 
-> **Tip:** `chmod -R 777` on the shared drop folders (`/zfspool/media` and `/zfspool/paperless/consume`) is the simplest way to let both an unprivileged `share` CT and an unprivileged `media` CT read/write without custom UID shift maps. For tighter permissions later, map a shared GID across both CTs.
+> **Tip:** `chmod -R 777` on `/zfspool/media` and `/zfspool/paperless` is the simplest way to let unprivileged CTs (`share` and `media`) and container users (Paperless, Redis) read/write without custom UID shift maps. For tighter permissions later, map a shared GID across both CTs.
 
 ---
 
