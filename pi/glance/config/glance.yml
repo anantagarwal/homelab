@@ -131,6 +131,34 @@ pages:
               - symbol: "AUDINR=X"
                 name: AUD / INR
 
+  - name: Server Stats
+    slug: servers
+    columns:
+      - size: full
+        widgets:
+          - type: server-stats
+            servers:
+              - type: local
+                name: Pi 5
+
+      - size: full
+        widgets:
+          - type: server-stats
+            servers:
+              - type: remote
+                name: media
+                url: http://192.168.1.202:27973
+                token: ${GLANCE_MEDIA_TOKEN}
+
+      - size: full
+        widgets:
+          - type: server-stats
+            servers:
+              - type: remote
+                name: share
+                url: http://192.168.1.201:27973
+                token: ${GLANCE_SHARE_TOKEN}
+
   - name: News & Feeds
     slug: feeds
     columns:
