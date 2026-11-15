@@ -47,6 +47,14 @@ pages:
             servers:
               - type: local
                 name: Pi 5
+              - type: remote
+                name: media
+                url: http://192.168.1.202:27973
+                token: ${GLANCE_MEDIA_TOKEN}
+              - type: remote
+                name: share
+                url: http://192.168.1.201:27973
+                token: ${GLANCE_SHARE_TOKEN}
 
       # Column 2: Service Health & Bookmarks
       - size: full

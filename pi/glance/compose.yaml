@@ -4,6 +4,9 @@ services:
     image: glanceapp/glance:latest
     container_name: glance
     restart: unless-stopped
+    environment:
+      GLANCE_MEDIA_TOKEN: ${GLANCE_MEDIA_TOKEN}
+      GLANCE_SHARE_TOKEN: ${GLANCE_SHARE_TOKEN}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       # Bind mount to local config file so dashboard config is fully declarative.
