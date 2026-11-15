@@ -109,13 +109,26 @@ shift $((OPTIND - 1))
 # Optional host/CT target prefix: `hl pi <cmd>` or `hl <nuc-ct> <cmd>` (e.g. `hl media <cmd>`)
 case "${1:-}" in
   pi)
-    [[ "$COMPOSE_OVERRIDE" == false ]] && COMPOSE_FILE="$SCRIPT_DIR/pi/compose.yaml"
+    if [[ "$COMPOSE_OVERRIDE" == false ]]; then
+      if [[ -f "$SCRIPT_DIR/pi/compose.yaml" ]]; then
+        COMPOSE_FILE="$SCRIPT_DIR/pi/compose.yaml"
+      elif [[ -f "$SCRIPT_DIR/homelab/pi/compose.yaml" ]]; then
+        COMPOSE_FILE="$SCRIPT_DIR/homelab/pi/compose.yaml"
+      else
+        COMPOSE_FILE="$SCRIPT_DIR/pi/compose.yaml"
+      fi
+    fi
     shift
     ;;
   *)
-    if [[ -n "${1:-}" && -f "$SCRIPT_DIR/nuc/${1}/compose.yaml" ]]; then
-      [[ "$COMPOSE_OVERRIDE" == false ]] && COMPOSE_FILE="$SCRIPT_DIR/nuc/${1}/compose.yaml"
-      shift
+    if [[ -n "${1:-}" ]]; then
+      if [[ -f "$SCRIPT_DIR/nuc/${1}/compose.yaml" ]]; then
+        [[ "$COMPOSE_OVERRIDE" == false ]] && COMPOSE_FILE="$SCRIPT_DIR/nuc/${1}/compose.yaml"
+        shift
+      elif [[ -f "$SCRIPT_DIR/homelab/nuc/${1}/compose.yaml" ]]; then
+        [[ "$COMPOSE_OVERRIDE" == false ]] && COMPOSE_FILE="$SCRIPT_DIR/homelab/nuc/${1}/compose.yaml"
+        shift
+      fi
     fi
     ;;
 esac
