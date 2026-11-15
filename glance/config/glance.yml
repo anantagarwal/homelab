@@ -60,15 +60,15 @@ pages:
               - title: BentoPDF
                 url: https://bentopdf.internal.anantagarwal.me
                 icon: mdi:file-pdf-box
-              - title: Docling
-                url: https://docling.internal.anantagarwal.me/ui
-                icon: mdi:file-sync
               - title: Dockhand
                 url: https://dockhand.internal.anantagarwal.me
                 icon: mdi:docker
               - title: Paperless-NGX
                 url: https://paperless.internal.anantagarwal.me
                 icon: mdi:archive
+              - title: Jellyfin
+                url: https://jellyfin.internal.anantagarwal.me
+                icon: mdi:movie-open
               - title: Glance Dashboard
                 url: https://home.internal.anantagarwal.me
                 icon: mdi:view-dashboard
@@ -87,15 +87,15 @@ pages:
                   - title: BentoPDF
                     url: https://bentopdf.internal.anantagarwal.me
                     icon: mdi:file-pdf-box
-                  - title: Docling
-                    url: https://docling.internal.anantagarwal.me/ui
-                    icon: mdi:file-sync
                   - title: Dockhand
                     url: https://dockhand.internal.anantagarwal.me
                     icon: mdi:docker
                   - title: Paperless-NGX
                     url: https://paperless.internal.anantagarwal.me
                     icon: mdi:archive
+                  - title: Jellyfin
+                    url: https://jellyfin.internal.anantagarwal.me
+                    icon: mdi:movie-open
                   - title: Home Apartment
                     url: https://aeaoa.anantagarwal.me/
                     icon: mdi:office-building

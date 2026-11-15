@@ -1,0 +1,20 @@
+# Intel NUC (Proxmox media CT - 192.168.1.202) orchestrator
+#
+# Usage (inside the NUC media CT):
+#   docker network create homelab-network   # one-time setup
+#   docker compose -f nuc/compose.yaml up -d
+#   docker compose -f nuc/compose.yaml pull
+#   docker compose -f nuc/compose.yaml down
+#
+# Services (proxied by Pi Traefik → 192.168.1.202):
+#   jellyfin    → jellyfin.internal.anantagarwal.me  (port 8096)
+#   paperless   → paperless.internal.anantagarwal.me (port 8000)
+
+include:
+  - jellyfin/compose.yaml
+  - paperless-ngx/compose.yaml
+
+networks:
+  default:
+    name: homelab-network
+    external: true

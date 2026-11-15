@@ -1,0 +1,52 @@
+# Dynamic routes for services hosted on the Intel NUC media CT (192.168.1.202).
+# Traefik watches /etc/traefik/dynamic and reloads automatically on changes.
+
+http:
+  middlewares:
+    nuc-https-redirect:
+      redirectScheme:
+        scheme: https
+
+  routers:
+    jellyfin-http:
+      rule: "Host(`jellyfin.internal.anantagarwal.me`)"
+      entryPoints:
+        - web
+      middlewares:
+        - nuc-https-redirect
+      service: jellyfin
+
+    jellyfin-https:
+      rule: "Host(`jellyfin.internal.anantagarwal.me`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+      service: jellyfin
+
+    paperless-http:
+      rule: "Host(`paperless.internal.anantagarwal.me`)"
+      entryPoints:
+        - web
+      middlewares:
+        - nuc-https-redirect
+      service: paperless
+
+    paperless-https:
+      rule: "Host(`paperless.internal.anantagarwal.me`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+      service: paperless
+
+  services:
+    jellyfin:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.202:8096"
+
+    paperless:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.202:8000"

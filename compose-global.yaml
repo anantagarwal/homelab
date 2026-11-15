@@ -15,6 +15,10 @@
 #   glance      → home.internal.anantagarwal.me
 #   bentopdf    → bentopdf.internal.anantagarwal.me
 #   dockhand    → dockhand.internal.anantagarwal.me
+#   docling     → docling.internal.anantagarwal.me
+#
+# NUC-hosted services (proxied by Pi Traefik via traefik/config/dynamic/nuc.yaml):
+#   jellyfin    → jellyfin.internal.anantagarwal.me
 #   paperless   → paperless.internal.anantagarwal.me
 
 include:
@@ -22,7 +26,6 @@ include:
   - glance/compose.yaml
   - bentopdf/compose.yaml
   - dockhand/compose.yaml
-  - paperless-ngx/compose.yaml
   - docling/compose.yaml
 
 networks:

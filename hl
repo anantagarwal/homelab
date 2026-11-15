@@ -5,7 +5,11 @@
 #   ~/repo/hl          → uses ~/repo/compose.yaml   (all stacks)
 #   ~/repo/homelab/hl  → uses ~/repo/homelab/compose-global.yaml (homelab only)
 #
-# Usage: hl [options] <command> [service]
+# Usage: hl [options] [pi|nuc] <command> [service]
+#
+# Targets (optional, defaults to pi / compose-global.yaml):
+#   pi                  Target Raspberry Pi stack (compose-global.yaml)
+#   nuc                 Target Intel NUC stack (nuc/compose.yaml)
 #
 # Options:
 #   -f <file>   Override the compose file path
@@ -22,10 +26,11 @@
 #
 # Examples:
 #   hl up
-#   hl restart homarr
-#   hl update paperless
+#   hl pi restart traefik
+#   hl nuc up
+#   hl nuc update jellyfin
 #   hl logs traefik
-#   hl exec paperless bash
+#   hl nuc exec paperless bash
 #   hl -f ~/repo/homelab/compose-global.yaml status
 
 set -euo pipefail
@@ -66,7 +71,11 @@ die()     { echo -e "${RED}✘ $*${RESET}" >&2; exit 1; }
 usage() {
   echo -e "${BOLD}hl — Homelab manager${RESET}"
   echo ""
-  echo -e "${BOLD}Usage:${RESET} $(basename "$0") [-f compose-file] <command> [service]"
+  echo -e "${BOLD}Usage:${RESET} $(basename "$0") [-f compose-file] [pi|nuc] <command> [service]"
+  echo ""
+  echo -e "${BOLD}Targets:${RESET}"
+  printf "  %-22s %s\n" "pi"                "Raspberry Pi stack (default: compose-global.yaml)"
+  printf "  %-22s %s\n" "nuc"               "Intel NUC stack (nuc/compose.yaml)"
   echo ""
   echo -e "${BOLD}Options:${RESET}"
   echo "  -f <file>   Override the compose file (default: auto-detected)"
@@ -86,14 +95,27 @@ usage() {
 }
 
 # ── Parse options ─────────────────────────────────────────────────────────────
+COMPOSE_OVERRIDE=false
 while getopts ":f:h" opt; do
   case $opt in
-    f) COMPOSE_FILE="$OPTARG" ;;
+    f) COMPOSE_FILE="$OPTARG"; COMPOSE_OVERRIDE=true ;;
     h) usage ;;
     \?) die "Unknown option: -$OPTARG" ;;
   esac
 done
 shift $((OPTIND - 1))
+
+# Optional host target prefix: `hl pi <cmd>` or `hl nuc <cmd>`
+case "${1:-}" in
+  pi)
+    [[ "$COMPOSE_OVERRIDE" == false ]] && COMPOSE_FILE="$SCRIPT_DIR/compose-global.yaml"
+    shift
+    ;;
+  nuc)
+    [[ "$COMPOSE_OVERRIDE" == false ]] && COMPOSE_FILE="$SCRIPT_DIR/nuc/compose.yaml"
+    shift
+    ;;
+esac
 
 [[ -z "$COMPOSE_FILE" ]] && die "No compose file found in ${SCRIPT_DIR}.\nRun with -f <path> to specify one."
 [[ ! -f "$COMPOSE_FILE" ]] && die "Compose file not found: ${COMPOSE_FILE}"

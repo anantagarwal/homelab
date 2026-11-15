@@ -1,0 +1,29 @@
+services:
+
+  # ── Jellyfin Media Server (amd64 + Intel QuickSync) ───────────────────────
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+    ports:
+      - "8096:8096"
+    # Intel Iris Plus 655 (i3-8109U) hardware transcoding via QuickSync
+    devices:
+      - /dev/dri:/dev/dri
+    # Match the host/CT render & video group IDs if hardware transcoding fails
+    # with permission denied (check `getent group render video` inside the CT).
+    # group_add:
+    #   - "104"
+    #   - "44"
+    environment:
+      - TZ=Asia/Kolkata
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.internal.anantagarwal.me
+    volumes:
+      - ./config:/config
+      - ./cache:/cache
+      - /mnt/media:/media
+
+networks:
+  default:
+    name: homelab-network
+    external: true

@@ -1,0 +1,55 @@
+services:
+
+  # ── Redis broker ──────────────────────────────────────────────────────────
+  paperless-broker:
+    image: docker.io/library/redis:7
+    container_name: paperless-broker
+    restart: unless-stopped
+    volumes:
+      - /mnt/paperless/redis:/data
+
+  # ── Gotenberg: converts Office docs + HTML to PDF ─────────────────────────
+  paperless-gotenberg:
+    image: docker.io/gotenberg/gotenberg:8
+    container_name: paperless-gotenberg
+    restart: unless-stopped
+    command:
+      - "gotenberg"
+      - "--chromium-disable-javascript=true"
+      - "--chromium-allow-list=file:///tmp/.*"
+
+  # ── Apache Tika: extracts text from Office/binary files (native amd64) ────
+  paperless-tika:
+    image: docker.io/apache/tika:latest
+    container_name: paperless-tika
+    restart: unless-stopped
+
+  # ── Paperless-NGX (SQLite variant) ────────────────────────────────────────
+  paperless:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    container_name: paperless
+    restart: unless-stopped
+    depends_on:
+      - paperless-broker
+      - paperless-gotenberg
+      - paperless-tika
+    ports:
+      - "8000:8000"
+    volumes:
+      - /mnt/paperless/data:/usr/src/paperless/data
+      - /mnt/paperless/media:/usr/src/paperless/media
+      - /mnt/paperless/export:/usr/src/paperless/export
+      - /mnt/paperless/consume:/usr/src/paperless/consume
+    env_file: .env
+    environment:
+      PAPERLESS_REDIS: redis://paperless-broker:6379
+      PAPERLESS_TIKA_ENABLED: 1
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenberg:3000
+      PAPERLESS_TIKA_ENDPOINT: http://paperless-tika:9998
+      PAPERLESS_URL: https://paperless.internal.anantagarwal.me
+      PAPERLESS_CSRF_TRUSTED_ORIGINS: https://paperless.internal.anantagarwal.me
+
+networks:
+  default:
+    name: homelab-network
+    external: true
